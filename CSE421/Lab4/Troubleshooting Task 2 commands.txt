@@ -1,0 +1,46 @@
+In PC-01 ->
+ipconfig
+ping 172.16.1.1
+ping 209.165.201.2
+ping 172.16.1.4 
+ping 172.16.2.3
+ping 172.16.2.4
+
+
+
+In PC-02 ->
+ipconfig
+ping 172.16.1.1
+ping 209.165.201.2
+ping 172.16.1.3 
+ping 172.16.2.3
+ping 172.16.2.4
+
+
+
+In PC-A ->
+ipconfig
+ping 209.165.201.2
+ping 172.16.2.1
+ping 172.16.2.4
+ping 172.16.1.3 
+ping 172.16.1.4
+
+In R1 ->
+en
+conf t
+int g0/1
+no ip add
+ip add 172.16.2.1 255.255.255.0
+no shut
+exit
+
+
+
+In PC-B ->
+ipconfig
+ping 209.165.201.2
+ping 172.16.2.1
+ping 172.16.2.3 
+ping 172.16.1.3 
+ping 172.16.1.4

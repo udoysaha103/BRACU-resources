@@ -1,0 +1,19 @@
+R2>en
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#ip access-list standard R2NAT
+R2(config-std-nacl)#permit 192.168.10.0 0.0.0.255
+R2(config-std-nacl)#permit 192.168.20.0 0.0.0.255
+R2(config-std-nacl)#permit 192.168.30.0 0.0.0.255
+R2(config-std-nacl)#exit
+R2(config)#ip nat pool R2POOL 209.165.202.129 209.165.202.129 netmask 255.255.255.252
+R2(config)#ip nat inside source list R2NAT pool R2POOL overload
+R2(config)#int se0/0/1
+R2(config-if)#ip nat inside
+R2(config-if)#int se0/0/0
+R2(config-if)#ip nat inside
+R2(config-if)#int fa0/0
+R2(config-if)#ip nat inside
+R2(config-if)#int se0/1/0
+R2(config-if)#ip nat outside
+R2(config-if)#ip nat inside source static 192.168.20.254 209.165.202.130

@@ -1,0 +1,41 @@
+R1>en
+R1#conf t
+R1(config)#ip route 0.0.0.0 0.0.0.0 s0/0/1
+R1(config)#router rip
+R1(config-router)#version 2
+R1(config-router)#no auto-summary
+R1(config-router)#network 192.168.1.0
+R1(config-router)#network 192.168.2.0
+R1(config-router)#passive-interface g0/0
+R1(config-router)#default-information originate
+R1(config-router)#end
+R1#copy run start
+
+
+
+
+R2>en
+R2#conf t
+R2(config)#router rip
+R2(config-router)#version 2
+R2(config-router)#no auto-summary
+R2(config-router)#network 192.168.2.0
+R2(config-router)#network 192.168.3.0
+R2(config-router)#network 192.168.4.0
+R2(config-router)#passive-interface g0/0
+R2(config-router)#end
+R2#copy run start
+
+
+
+
+R3>en
+R3#conf t
+R3(config)#router rip
+R3(config-router)#version 2
+R3(config-router)#no auto-summary
+R3(config-router)#network 192.168.4.0
+R3(config-router)#network 192.168.5.0
+R3(config-router)#passive-interface g0/0
+R3(config-router)#end
+copy run start

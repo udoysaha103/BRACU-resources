@@ -1,0 +1,11 @@
+def for_loop():
+    for i in range(10):
+        print(i)
+
+    a = 10
+    b = 20
+    if (a > b):
+        print(a)
+    else:
+        print(b)
+    return 0

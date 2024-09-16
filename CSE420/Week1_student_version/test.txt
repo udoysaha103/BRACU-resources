@@ -1,0 +1,11 @@
+def _func1(a, b):
+    a = 5
+    b = 6.3
+    c = "s"
+
+    if a > b:
+        print("a is greater than b")
+    else:
+        print("a is not greater than b")
+    
+    return a + b

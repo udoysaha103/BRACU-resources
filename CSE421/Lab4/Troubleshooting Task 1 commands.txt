@@ -1,0 +1,59 @@
+In PC1 ->
+ipconfig /all
+
+
+In PC3 ->
+ipconfig /all
+ping 10.10.1.98
+
+
+In PC1 ->
+tracert 10.10.1.18 
+
+
+In PC1 ->
+tracert 10.10.1.98
+
+
+In R1, then R3 ->
+en
+show ip interface brief
+show ip route
+
+
+In R2 ->
+en
+show ip interface brief
+conf t
+int s0/0/0
+no ip add
+ip add 10.10.1.5 255.255.255.252
+no shut
+exit
+
+
+In PC3 ->
+ping 10.10.1.98
+
+----------------------------------------------
+
+In PC2 ->
+ipv6config /all
+
+
+In PC4 ->
+ipv6config /all
+ping 2001:DB8:1:1::2 
+
+
+In PC2 ->
+tracert 2001:DB8:1:4::2 
+
+
+In PC4 ->
+tracert 2001:DB8:1:1::2 
+
+
+In R3 ->
+en
+show ipv6 interface brief

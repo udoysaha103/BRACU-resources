@@ -1,0 +1,102 @@
+Configuring R1:
+
+
+Router>enable
+Router#erase startup-config
+Router#reload
+
+Router>enable
+Router#configure terminal
+
+Router(config)#hostname R1
+R1(config)#no ip domain-lookup
+R1(config)#enable secret class
+
+R1(config)#banner motd &
+Enter TEXT message.  End with the character '&'.
+******************************** 
+  !!!AUTHORIZED ACCESS ONLY!!! 
+******************************** 
+& 
+
+R1(config)#line console 0
+R1(config-line)#password cisco
+R1(config-line)#login
+R1(config-line)#exit
+
+R1(config)#line vty 0 4
+R1(config-line)#password cisco
+R1(config-line)#login
+R1(config-line)#exit
+
+R1(config)#interface fastethernet 0/0
+R1(config-if)#ip address 192.168.1.1 255.255.255.0
+R1(config-if)#no shutdown
+
+R1(config-if)#interface serial 0/0/0
+R1(config-if)#ip address 192.168.2.1 255.255.255.0
+R1(config-if)#clock rate 64000
+R1(config-if)#no shutdown
+
+R1(config-if)#end
+R1#copy running-config startup-config
+
+
+
+
+
+Configuring R2:
+
+
+Router>enable
+Router#erase startup-config
+Router#reload
+
+Router>enable
+Router#configure terminal
+
+Router(config)#hostname R2
+R2(config)#no ip domain-lookup
+R2(config)#enable secret class
+
+R2(config)#banner motd &
+Enter TEXT message.  End with the character '&'.
+******************************** 
+  !!!AUTHORIZED ACCESS ONLY!!! 
+******************************** 
+& 
+
+R2(config)#line console 0
+R2(config-line)#password cisco
+R2(config-line)#login
+R2(config-line)#exit
+
+R2(config)#line vty 0 4
+R2(config-line)#password cisco
+R2(config-line)#login
+R2(config-line)#exit
+
+R2(config-if)#interface serial 0/0/0
+R2(config-if)#ip address 192.168.2.2 255.255.255.0
+R2(config-if)#no shutdown
+
+R2(config)#interface fastethernet 0/0
+R2(config-if)#ip address 192.168.3.1 255.255.255.0
+R2(config-if)#no shutdown
+
+R2(config-if)#end
+R2#copy running-config startup-config
+
+
+
+
+
+Verifying and Testing the Configurations:
+
+
+From the host attached to R1 and R2: show ip route
+From the host attached to R1 and R2: show ip interface brief
+From the host attached to R1: ping 192.168.1.1
+From the host attached to R2: ping 192.168.3.1
+From R1: ping 192.168.2.2
+From R1: ping 192.168.2.1

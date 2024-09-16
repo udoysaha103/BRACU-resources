@@ -1,0 +1,5 @@
+Change in heap =>
+
+After sorting :  [2, 3, 4, 5, 6, 8, 10]
+[None, None, None, None, None, None, None, None] 
+
